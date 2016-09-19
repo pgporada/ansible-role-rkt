@@ -1,8 +1,11 @@
 Role Name
 =========
-[![Build Status](https://travis-ci.org/pgporada/ansible-role-repo-salt.svg?branch=master)](https://travis-ci.org/pgporada/ansible-role-repo-salt)
+[![Build Status](https://travis-ci.org/pgporada/ansible-role-rkt.svg?branch=master)](https://travis-ci.org/pgporada/ansible-role-rkt)
 
-This role installs the Salt repository.
+* ansible-role-rkt
+* pgporada.rkt
+
+This role installs [rkt](https://coreos.com/rkt/)
 
 Requirements
 ------------
@@ -24,7 +27,7 @@ Example Playbook
 
     - hosts: my_hosts
       roles:
-         - pgporada.repo-salt
+         - pgporada.rkt
 
 License
 -------

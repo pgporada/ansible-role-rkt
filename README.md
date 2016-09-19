@@ -40,3 +40,4 @@ Author Information
 ------------------
 
 [Phil Porada](https://philporada.com)
+I largely followed the instructions from [Asteris](http://aster.is/blog/2016/02/26/setting-up-rkt/)

@@ -1,6 +1,6 @@
 ---
 - name: Ensure dependencies are installed
-  pkg:
+  package:
     name: iptables
     state: present
 

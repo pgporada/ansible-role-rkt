@@ -1,11 +1,20 @@
 ---
 - name: Get rkt release from Github
-  shell: "curl -L https://github.com/coreos/rkt/releases/download/v{{ rkt_version }}/rkt-v{{ rkt_version}}.tar.gz | tar xvf"
+  shell: "curl -L https://github.com/coreos/rkt/releases/download/v{{ rkt_version }}/rkt-v{{ rkt_version}}.tar.gz | tar zxv"
+
+- name: Stat rkt
+  stat: 
+    path: "rkt-v{{ rkt_version }}/rkt"
+  register: foo_stat
 
 - name: Install the rkt binary
+  command: "mv rkt-v{{ rkt_version }}/rkt /usr/bin/rkt"
+  when: foo_stat.stat.exists
+
+- name: Set permissions on rkt binary
   file: 
-    src: "rkt-v{{ rkt_version }}/rkt"
     dest: /usr/bin/rkt
     owner: root
     group: root
     mode: 0755
+    state: file

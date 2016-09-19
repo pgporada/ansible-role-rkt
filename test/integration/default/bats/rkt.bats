@@ -6,6 +6,6 @@
 }
 
 @test "Ensure rkt can run" {
-    run rkt --version
+    run rkt version
     [ "$status" -eq 0 ]
 }

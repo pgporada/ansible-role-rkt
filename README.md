@@ -15,7 +15,9 @@ None
 Role Variables
 --------------
 
-None
+The version of rkt to install
+
+        rkt_version: 1.1.0
 
 Dependencies
 ------------

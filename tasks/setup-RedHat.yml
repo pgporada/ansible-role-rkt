@@ -1,1 +1,6 @@
 ---
+- name: Get rkt
+  shell: "curl -L https://github.com/coreos/rkt/releases/download/v{{ rkt_version }}/rkt-v{{ rkt_version}}.tar.gz | tar zxf"
+
+- name: Install rkt
+  shell: "cp rkt-v{{ rkt_version }}/rkt /usr/bin/"

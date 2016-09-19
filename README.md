@@ -17,7 +17,7 @@ Role Variables
 
 The version of rkt to install
 
-        rkt_version: 1.1.0
+        rkt_version: 1.15.0
 
 Dependencies
 ------------

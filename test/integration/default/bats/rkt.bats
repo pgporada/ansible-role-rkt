@@ -5,8 +5,7 @@
     [ "$status" -eq 0 ]
 }
 
-@test "Ensure SELinux is working with rkt" {
-    run rkt run quay.io/coreos/alpine-sh --exec=/bin/echo -- 'Hello, rkt!'
+@test "Ensure rkt can run" {
+    run rkt --version
     [ "$status" -eq 0 ]
-    [ "$output" != "*cannot open shared object file: Permission denied" ]
 }

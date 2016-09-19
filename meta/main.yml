@@ -1,0 +1,19 @@
+galaxy_info:
+  author: Phil Porada
+  description: Installs rkt by https://coreos.com/rkt/
+  company: PhlJny
+  license: BSD
+
+  min_ansible_version: 2.1
+  github_branch: master
+
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  galaxy_tags:
+    - containers
+    - not_docker
+
+dependencies: []

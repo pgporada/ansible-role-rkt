@@ -1,0 +1,30 @@
+---
+language: python
+
+sudo: required
+
+env:
+  - CONTAINER_ID=$(mktemp)
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get update
+  - sudo docker pull centos:7
+  - sudo docker build --rm=true --tag=docker-cent -f Dockerfile.centos .
+
+script:
+  # Run container in detached state
+  - sudo docker run --detach --privileged --volume=$(pwd):/etc/ansible/roles/ansible-role-rkt:ro --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro docker-cent /usr/lib/systemd/systemd > /tmp/container_id
+  # Check syntax of ansible playbook
+  - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/ansible-role-rkt/test/integration/default/travis.yml --syntax-check
+  # Run ansible playbook
+  - sudo docker exec "$(cat /tmp/container_id)" ansible-playbook /etc/ansible/roles/ansible-role-rkt/test/integration/default/travis.yml
+  # Run tests
+  - sudo docker exec "$(cat /tmp/container_id)" bash -c "export TERM=xterm && bats --tap /etc/ansible/roles/ansible-role-rkt/test/integration/default/bats/rkt.bats"
+  # Clean up
+  - sudo docker stop "$(cat /tmp/container_id)"
+
+notifications:
+  email: false
